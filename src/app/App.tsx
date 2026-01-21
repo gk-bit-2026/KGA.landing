@@ -1,14 +1,15 @@
 import React from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { AboutStats } from './components/AboutStats';
-import { Features } from './components/Features'; 
-import { Programs } from './components/Programs';
-import { Testimonials } from './components/Testimonials';
-import { AdmissionForm } from './components/AdmissionForm';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer'; // Double check if Footer is in components or app/components
-import { Toaster } from './components/ui/sonner';
+// Use ../ to go from src/app/ up to src/ and then into components/
+import { Header } from '../components/Header';
+import { Hero } from '../components/Hero';
+import { AboutStats } from '../components/AboutStats';
+import { Features } from '../components/Features'; 
+import { Programs } from '../components/Programs';
+import { Testimonials } from '../components/Testimonials';
+import { AdmissionForm } from '../components/AdmissionForm';
+import { ContactSection } from '../components/ContactSection';
+import { Footer } from '../components/Footer'; 
+import { Toaster } from '../components/ui/sonner';
 import { motion } from 'framer-motion';
 
 export default function App() {
