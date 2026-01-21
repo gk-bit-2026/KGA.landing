@@ -21,12 +21,18 @@ export function Footer() {
               Empowering future leaders through an innovative global curriculum and character-driven education in the heart of Bangalore.
             </p>
             <div className="flex gap-3">
-              {[
-                { icon: Facebook, color: 'hover:bg-[#1877F2]' },
-                { icon: Twitter, color: 'hover:bg-[#1DA1F2]' },
-                { icon: Instagram, color: 'hover:bg-[#E4405F]' },
-                { icon: Linkedin, color: 'hover:bg-[#0A66C2]' }
-              ].map((social, i) => (
+            {[
+    { icon: Facebook, color: 'hover:bg-[#1877F2]', url: 'https://facebook.com/yourpage' },
+    { icon: Twitter, color: 'hover:bg-[#1DA1F2]', url: 'https://twitter.com/yourhandle' },
+    { icon: Instagram, color: 'hover:bg-[#E4405F]', url: 'https://instagram.com/yourprofile' },
+    { icon: Linkedin, color: 'hover:bg-[#0A66C2]', url: 'https://linkedin.com/school/yourprofile' }
+  ].map((social, i) => (
+    <a 
+      key={i} 
+      href={social.url} 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
                 <Button 
                   key={i} 
                   size="icon" 
