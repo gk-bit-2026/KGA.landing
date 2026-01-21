@@ -1,9 +1,43 @@
-import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  Phone, 
+  MapPin, 
+  Facebook, 
+  Instagram, 
+  Youtube, 
+  MessageCircle, 
+  ArrowRight 
+} from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    { 
+      icon: Facebook, 
+      color: 'hover:bg-[#1877F2]', 
+      url: 'https://www.facebook.com/profile.php?id=100087746154665&mibextid=LQQJ4d' 
+    },
+    { 
+      icon: Youtube, 
+      color: 'hover:bg-[#FF0000]', 
+      url: 'https://youtu.be/MfVvemq5leM' 
+    },
+    { 
+      icon: Instagram, 
+      color: 'hover:bg-[#E4405F]', 
+      url: 'https://www.instagram.com/KoshysGlobalAcademia_official/' 
+    },
+    { 
+      icon: MessageCircle, 
+      color: 'hover:bg-[#25D366]', 
+      url: 'https://wa.me/+919035332189' 
+    }
+  ];
+
   return (
     <footer className="bg-[#0a0b1e] text-gray-400 relative overflow-hidden">
       {/* Subtle Background Accent */}
@@ -21,26 +55,22 @@ export function Footer() {
               Empowering future leaders through an innovative global curriculum and character-driven education in the heart of Bangalore.
             </p>
             <div className="flex gap-3">
-            {[
-    { icon: Facebook, color: 'hover:bg-[#1877F2]', url: 'https://www.facebook.com/profile.php?id=100087746154665&mibextid=LQQJ4d' },
-    { icon: Youtube, color: 'hover:bg-[#1DA1F2]', url: 'https://youtu.be/MfVvemq5leM' },
-    { icon: Instagram, color: 'hover:bg-[#E4405F]', url: 'https://www.instagram.com/KoshysGlobalAcademia_official/' },
-    { icon: Whatsapp, color: 'hover:bg-[#0A66C2]', url: 'https://wa.me/+919035332189' }
-  ].map((social, i) => (
-    <a 
-      key={i} 
-      href={social.url} 
-      target="_blank" 
-      rel="noopener noreferrer"
-    >
-                <Button 
+              {socialLinks.map((social, i) => (
+                <a 
                   key={i} 
-                  size="icon" 
-                  variant="outline" 
-                  className={`border-white/10 bg-white/5 text-white transition-all duration-300 rounded-xl ${social.color} hover:border-transparent`}
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:-translate-y-1"
                 >
-                  <social.icon className="h-5 w-5" />
-                </Button>
+                  <Button 
+                    size="icon" 
+                    variant="outline" 
+                    className={`border-white/10 bg-white/5 text-white transition-all duration-300 rounded-xl ${social.color} hover:border-transparent`}
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </Button>
+                </a>
               ))}
             </div>
           </div>
@@ -81,9 +111,9 @@ export function Footer() {
             <div className="flex gap-2">
               <Input 
                 placeholder="Email Address" 
-                className="bg-white/5 border-white/10 rounded-xl focus-visible:ring-[#6071dd]" 
+                className="bg-white/5 border-white/10 rounded-xl focus-visible:ring-[#6071dd] text-white" 
               />
-              <Button className="bg-[#6071dd] hover:bg-[#4e5ec7] text-white rounded-xl">
+              <Button className="bg-[#6071dd] hover:bg-[#4e5ec7] text-white rounded-xl px-6">
                 Join
               </Button>
             </div>
@@ -91,11 +121,11 @@ export function Footer() {
             <div className="pt-4 space-y-4">
               <div className="flex gap-3 items-start">
                 <MapPin className="h-5 w-5 text-[#6071dd] shrink-0 mt-0.5" />
-                <span className="text-sm">123 Education Street, Bangalore, KA 560001</span>
+                <span className="text-sm">Koshys Global Academia, Kannur, Bangalore, KA 562149</span>
               </div>
               <div className="flex gap-3 items-center">
                 <Phone className="h-5 w-5 text-[#6071dd] shrink-0" />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">+91 90353 32189</span>
               </div>
             </div>
           </div>
@@ -105,7 +135,7 @@ export function Footer() {
         <div className="border-t border-white/10 pt-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-xs font-medium tracking-wider uppercase opacity-50">
-              © {new Date().getFullYear()} Koshys Global Academia. Crafted for Excellence.
+              © {currentYear} Koshys Global Academia. Crafted for Excellence.
             </p>
             <div className="flex gap-8 text-xs font-bold uppercase tracking-widest">
               <a href="#" className="hover:text-[#6071dd] transition-colors">Privacy</a>
