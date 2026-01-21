@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion'; // Ensure this matches your package (motion/react or framer-motion)
 import { Button } from '@/app/components/ui/button';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 
@@ -8,9 +8,8 @@ interface HeroProps {
 
 export function Hero({ onScrollToAdmission }: HeroProps) {
   return (
-    // Updated background to utilize Deep Space and White for a cleaner look
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white font-sans">
-      {/* Background patterns utilizing brand Navy at low opacity */}
+      {/* Background patterns */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#6071dd] opacity-5 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2c328a] opacity-5 blur-[120px] rounded-full"></div>
@@ -28,7 +27,6 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              // Styled with Brand Navy and Black
               className="inline-block mb-6 px-4 py-2 bg-[#2c328a] text-white rounded-full text-sm font-semibold tracking-wide shadow-md"
             >
               Nurturing Young Minds Since Excellence
@@ -38,7 +36,6 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              // Heading uses Accent Blue to Brand Navy Gradient
               className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-gradient-to-r from-[#6071dd] to-[#2c328a] bg-clip-text text-transparent leading-[1.1]"
             >
               Koshys Global Academia
@@ -48,7 +45,6 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              // Text in a dark grey/black for maximum readability
               className="text-lg md:text-xl text-black/70 mb-10 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0"
             >
               Where education meets innovation. We provide world-class learning experiences 
@@ -64,24 +60,30 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
               <Button 
                 size="lg" 
                 onClick={onScrollToAdmission}
-                // Solid Primary Navy with Deep Space Hover
                 className="bg-[#2c328a] hover:bg-[#1f2150] text-white px-10 py-7 text-xl font-bold group transition-all duration-300 rounded-xl shadow-xl shadow-[#2c328a]/20"
               >
                 Apply for Admission
                 <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-2 transition-transform" />
               </Button>
               
-              <Button 
-                size="lg" 
-                variant="outline"
-                // Outline uses the Navy brand color
-                className="px-10 py-7 text-xl font-bold border-2 border-[#2c328a] text-[#2c328a] hover:bg-[#2c328a]/5 transition-colors rounded-xl"
+              {/* ATTACHED LINK HERE */}
+              <a 
+                href="https://shorturl.at/ixEm8" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block"
               >
-                Explore Programs
-              </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="w-full px-10 py-7 text-xl font-bold border-2 border-[#2c328a] text-[#2c328a] hover:bg-[#2c328a]/5 transition-colors rounded-xl"
+                >
+                  Explore Programs
+                </Button>
+              </a>
             </motion.div>
 
-            {/* Contact Info using Brand Accent */}
+            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -119,45 +121,9 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#1f2150]/40 to-transparent"></div>
             </div>
 
-            {/* Floating Stats using Deep Space and Accent Blue */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
               className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100"
             >
-              <div className="text-4xl font-black text-[#2c328a]">500+</div>
-              <div className="text-sm font-bold text-black/50 tracking-wider uppercase">Happy Students</div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1 }}
-              className="absolute -top-8 -right-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100"
-            >
-              <div className="text-4xl font-black text-[#6071dd]">15+</div>
-              <div className="text-sm font-bold text-black/50 tracking-wider uppercase">Years Excellence</div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-7 h-12 border-2 border-[#2c328a]/30 rounded-full flex justify-center p-1">
-          <motion.div
-            animate={{ y: [0, 16, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-2 h-2 bg-[#2c328a] rounded-full mt-1"
-          />
-        </div>
-      </motion.div>
-    </section>
-  );
-}
