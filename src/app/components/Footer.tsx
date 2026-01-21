@@ -22,10 +22,10 @@ export function Footer() {
             </p>
             <div className="flex gap-3">
             {[
-    { icon: Facebook, color: 'hover:bg-[#1877F2]', url: 'https://facebook.com/yourpage' },
-    { icon: Twitter, color: 'hover:bg-[#1DA1F2]', url: 'https://twitter.com/yourhandle' },
-    { icon: Instagram, color: 'hover:bg-[#E4405F]', url: 'https://instagram.com/yourprofile' },
-    { icon: Linkedin, color: 'hover:bg-[#0A66C2]', url: 'https://linkedin.com/school/yourprofile' }
+    { icon: Facebook, color: 'hover:bg-[#1877F2]', url: 'https://www.facebook.com/profile.php?id=100087746154665&mibextid=LQQJ4d' },
+    { icon: Youtube, color: 'hover:bg-[#1DA1F2]', url: 'https://youtu.be/MfVvemq5leM' },
+    { icon: Instagram, color: 'hover:bg-[#E4405F]', url: 'https://www.instagram.com/KoshysGlobalAcademia_official/' },
+    { icon: Whatsapp, color: 'hover:bg-[#0A66C2]', url: 'https://wa.me/+919035332189' }
   ].map((social, i) => (
     <a 
       key={i} 
