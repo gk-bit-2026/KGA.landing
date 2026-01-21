@@ -1,164 +1,158 @@
-import { motion } from 'framer-motion';
+'use client';
+
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Zap, Target, BarChart, Camera } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
-import { ArrowRight, Phone, Mail } from 'lucide-react';
 
-interface HeroProps {
-  onScrollToAdmission: () => void;
-}
+const roles = [
+  'Digital Marketers',
+  'Growth Hackers',
+  'Brand Strategists',
+  'Video Editors',
+  'Creative Directors',
+];
 
-export function Hero({ onScrollToAdmission }: HeroProps) {
+export default function GraphikardiaHero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [activeRole, setActiveRole] = useState(0);
+  const animationFrameRef = useRef<number>();
+
+  const drawCanvas = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !containerRef.current) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Neon Spotlight
+    const gradient = ctx.createRadialGradient(mousePos.x, mousePos.y, 0, mousePos.x, mousePos.y, 220);
+    gradient.addColorStop(0, 'rgba(236, 72, 153, 0.15)'); // Pink-500
+    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Service Tags Reveal
+    ctx.font = 'bold 14px "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    
+    roles.forEach((_, index) => {
+      const angle = (index / roles.length) * Math.PI * 2;
+      const x = canvas.width / 2 + Math.cos(angle) * 300;
+      const y = canvas.height / 2 + Math.sin(angle) * 300;
+
+      const dist = Math.sqrt(Math.pow(mousePos.x - x, 2) + Math.pow(mousePos.y - y, 2));
+      const opacity = Math.max(0, 1 - dist / 200);
+
+      if (opacity > 0) {
+        ctx.save();
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = '#ec4899';
+        ctx.fillText('• DISRUPT •', x, y);
+        ctx.restore();
+      }
+    });
+  }, [mousePos]);
+
+  useEffect(() => {
+    const animate = () => {
+      drawCanvas();
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(animationFrameRef.current!);
+  }, [drawCanvas]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveRole((prev) => (prev + 1) % roles.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white font-sans">
-      {/* Background patterns */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#6071dd] opacity-5 blur-[120px] rounded-full"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2c328a] opacity-5 blur-[120px] rounded-full"></div>
+    <section 
+      ref={containerRef}
+      onMouseMove={(e) => {
+        const rect = containerRef.current?.getBoundingClientRect();
+        if (rect) setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+      }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303] text-white font-sans"
+    >
+      {/* Background FX */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-pink-500/10 blur-[120px] rounded-full" />
       
-      <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
-          {/* Left Content Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-block mb-6 px-4 py-2 bg-[#2c328a] text-white rounded-full text-sm font-semibold tracking-wide shadow-md"
-            >
-              Nurturing Young Minds Since Excellence
-            </motion.div>
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-gradient-to-r from-[#6071dd] to-[#2c328a] bg-clip-text text-transparent leading-[1.1]"
-            >
-              Koshys Global Academia
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-black/70 mb-10 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0"
-            >
-              Where education meets innovation. We provide world-class learning experiences 
-              that inspire creativity, foster curiosity, and build confident future leaders.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <Button 
-                size="lg" 
-                onClick={onScrollToAdmission}
-                className="bg-[#2c328a] hover:bg-[#1f2150] text-white px-10 py-7 text-xl font-bold group transition-all duration-300 rounded-xl shadow-xl shadow-[#2c328a]/20"
-              >
-                Apply for Admission
-                <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-2 transition-transform" />
-              </Button>
-              
-              <a 
-                href="https://shorturl.at/ixEm8" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="w-full px-10 py-7 text-xl font-bold border-2 border-[#2c328a] text-[#2c328a] hover:bg-[#2c328a]/5 transition-colors rounded-xl"
-                >
-                  Explore Programs
-                </Button>
-              </a>
-            </motion.div>
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-20" />
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="mt-10 flex flex-col sm:flex-row gap-6 justify-center lg:justify-start text-base font-semibold text-black/60"
-            >
-              <div className="flex items-center gap-3 group cursor-pointer hover:text-[#2c328a] transition-colors">
-                <div className="p-2 bg-[#6071dd]/10 rounded-lg">
-                  <Phone className="h-5 w-5 text-[#2c328a]" />
-                </div>
-                <span>+91 90353 32189</span>
-              </div>
-              <div className="flex items-center gap-3 group cursor-pointer hover:text-[#2c328a] transition-colors">
-                <div className="p-2 bg-[#6071dd]/10 rounded-lg">
-                  <Mail className="h-5 w-5 text-[#2c328a]" />
-                </div>
-                <span>info@koshysglobalacademia.com</span>
-              </div>
-            </motion.div>
-          </motion.div>
+      <div className="container relative z-10 px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 mb-8 px-3 py-1 border border-pink-500/30 bg-pink-500/5 text-pink-400 rounded-full text-[10px] font-black tracking-[0.2em] uppercase"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+          </span>
+          Next-Gen Creative Partner
+        </motion.div>
 
-          {/* Right Image Column */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(31,33,80,0.3)] border-4 border-white">
-              <img
-                src="/Reading.jpeg" 
-                alt="Happy children learning"
-                className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1f2150]/40 to-transparent"></div>
-            </div>
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-4">
+          GRAPHIKARDIA
+        </h1>
 
-            {/* Floating Stats */}
+        <div className="h-24 flex flex-col items-center justify-center overflow-hidden">
+          <span className="text-xs uppercase tracking-[0.5em] text-white/40 mb-2">We Are Your</span>
+          <AnimatePresence mode="wait">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8 }}
-              className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100"
+              key={activeRole}
+              initial={{ y: 30, opacity: 0, skewY: 10 }}
+              animate={{ y: 0, opacity: 1, skewY: 0 }}
+              exit={{ y: -30, opacity: 0, skewY: -10 }}
+              transition={{ duration: 0.5, ease: "circOut" }}
+              className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-400 bg-clip-text text-transparent"
             >
-              <div className="text-4xl font-black text-[#2c328a]">300+</div>
-              <div className="text-sm font-bold text-black/50 tracking-wider uppercase">Happy Students</div>
+              {roles[activeRole]}
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1 }}
-              className="absolute -top-8 -right-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100"
-            >
-              <div className="text-4xl font-black text-[#6071dd]">05+</div>
-              <div className="text-sm font-bold text-black/50 tracking-wider uppercase">Years Excellence</div>
-            </motion.div>
-          </motion.div>
+          </AnimatePresence>
         </div>
+
+        <motion.p 
+          className="max-w-xl mx-auto text-white/50 text-base md:text-lg mt-8 mb-12 font-medium"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          We don't just market; we dominate. Transforming brands through high-impact 
+          visuals and data-driven growth hacking.
+        </motion.p>
+
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-6 justify-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <Button className="bg-white text-black hover:bg-pink-500 hover:text-white px-10 py-7 text-lg font-black rounded-none transition-all duration-300 transform hover:-translate-y-1">
+            START A PROJECT <ArrowUpRight className="ml-2" />
+          </Button>
+          <Button variant="outline" className="border-white/20 text-white px-10 py-7 text-lg font-black rounded-none hover:bg-white/5">
+            VIEW REEL
+          </Button>
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-7 h-12 border-2 border-[#2c328a]/30 rounded-full flex justify-center p-1">
-          <motion.div
-            animate={{ y: [0, 16, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-2 h-2 bg-[#2c328a] rounded-full mt-1"
-          />
-        </div>
-      </motion.div>
+      {/* Edge Service Indicators */}
+      <div className="absolute hidden lg:flex flex-col gap-8 left-12 top-1/2 -translate-y-1/2 opacity-20">
+        <Zap size={20} /> <Target size={20} /> <BarChart size={20} /> <Camera size={20} />
+      </div>
     </section>
   );
 }
