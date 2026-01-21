@@ -16,8 +16,8 @@ export function ContactSection() {
       icon: <Phone className="text-[#6071dd] h-6 w-6" />, 
       title: "Contact Numbers", 
       desc: "+91 90353 32189 / +91 80 1234 5678",
-      actionText: "Call Admissions",
-      link: "tel:+919035332189"
+      actionText: "Whatsapp Us",
+      link: "https://wa.me/+919035332189"
     },
     { 
       icon: <Clock className="text-[#6071dd] h-6 w-6" />, 
