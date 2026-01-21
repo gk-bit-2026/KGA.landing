@@ -98,3 +98,67 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
               <div className="flex items-center gap-3 group cursor-pointer hover:text-[#2c328a] transition-colors">
                 <div className="p-2 bg-[#6071dd]/10 rounded-lg">
                   <Mail className="h-5 w-5 text-[#2c328a]" />
+                </div>
+                <span>info@koshysglobalacademia.com</span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Image Column */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(31,33,80,0.3)] border-4 border-white">
+              <img
+                src="/Reading.jpeg" 
+                alt="Happy children learning"
+                className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1f2150]/40 to-transparent"></div>
+            </div>
+
+            {/* Floating Stats */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8 }}
+              className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100"
+            >
+              <div className="text-4xl font-black text-[#2c328a]">300+</div>
+              <div className="text-sm font-bold text-black/50 tracking-wider uppercase">Happy Students</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1 }}
+              className="absolute -top-8 -right-8 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100"
+            >
+              <div className="text-4xl font-black text-[#6071dd]">05+</div>
+              <div className="text-sm font-bold text-black/50 tracking-wider uppercase">Years Excellence</div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, repeat: Infinity, duration: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <div className="w-7 h-12 border-2 border-[#2c328a]/30 rounded-full flex justify-center p-1">
+          <motion.div
+            animate={{ y: [0, 16, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="w-2 h-2 bg-[#2c328a] rounded-full mt-1"
+          />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
