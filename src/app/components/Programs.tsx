@@ -42,7 +42,7 @@ const programs = [
 export function Programs() {
   const handleDownload = () => {
     // Direct Download conversion for Google Drive
-    const brochureUrl = "https://drive.google.com/uc?export=download&id=1WV2O3MOEskSrDwomQnp4mQAofIyEmWgh";
+    const brochureUrl = "https://shorturl.at/ixEm8";
     
     const link = document.createElement('a');
     link.href = brochureUrl;
