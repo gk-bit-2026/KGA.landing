@@ -78,7 +78,7 @@ export function Hero({ onScrollToAdmission }: HeroProps) {
                   variant="outline"
                   className="w-full px-10 py-7 text-xl font-bold border-2 border-[#2c328a] text-[#2c328a] hover:bg-[#2c328a]/5 transition-colors rounded-xl"
                 >
-                  Explore Programs
+                Our Brochure  
                 </Button>
               </a>
             </motion.div>
