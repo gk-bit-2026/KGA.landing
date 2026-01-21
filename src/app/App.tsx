@@ -1,5 +1,7 @@
+// src/app/App.tsx
+
 import React from 'react';
-// Use ../ to go from src/app/ up to src/ and then into components/
+// Use ../ to go UP one level to 'src', then DOWN into 'components'
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { AboutStats } from '../components/AboutStats';
