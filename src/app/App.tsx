@@ -9,6 +9,7 @@ import { AdmissionForm } from './components/AdmissionForm';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer'; // Double check if Footer is in components or app/components
 import { Toaster } from './components/ui/sonner';
+import { motion } from 'framer-motion';
 
 export default function App() {
   const scrollToAdmission = () => {
