@@ -52,8 +52,7 @@ export function ContactSection() {
 
           {/* Google Map Embed - Fixed URL */}
           <div className="lg:col-span-2 h-[450px] rounded-[3rem] overflow-hidden shadow-2xl relative group">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31088.239907286763!2d77.6667136!3d13.097286002064974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1bf2dc58edeb%3A0xdeb313eeea4b0a76!2sKoshys%20Global%20Academia%20(KGA)!5e0!3m2!1sen!2sin!4v1768982902260!5m2!1sen!2sin" 
-           width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31088.239907286763!2d77.6667136!3d13.097286002064974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1bf2dc58edeb%3A0xdeb313eeea4b0a76!2sKoshys%20Global%20Academia%20(KGA)!5e0!3m2!1sen!2sin!4v1768982902260!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
